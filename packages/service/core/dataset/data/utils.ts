@@ -1,4 +1,7 @@
-import { matchMarkdownImages } from '@fastgpt/global/common/string/markdown';
+import {
+  matchMarkdownImages,
+  unescapeMarkdownImageUrl
+} from '@fastgpt/global/common/string/markdown';
 import { DatasetDataIndexStatusEnum } from '@fastgpt/global/core/dataset/data/constants';
 import { DatasetErrEnum } from '@fastgpt/global/common/error/code/dataset';
 
@@ -27,7 +30,7 @@ export const matchDatasetDataMarkdownImages = (text = ''): DatasetDataMarkdownIm
     .map((match) => ({
       raw: match.fullMatch,
       alt: match.altText,
-      url: match.url,
+      url: unescapeMarkdownImageUrl(match.url),
       index: match.index
     }));
 };
